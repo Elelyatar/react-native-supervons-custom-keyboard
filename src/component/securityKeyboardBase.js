@@ -141,23 +141,24 @@ class SecurityKeyboard extends Component {
       cursorLock: false
     })
     this.onFocus()
-    let timer = setTimeout(() => {
-      UIManager.measure(
-        findNodeHandle(this.refs.keyboardWrap),
-        (x, y, widths, heights) => {
-          DeviceEventEmitter.emit("_keyboardDidShow", {
-            endCoordinates: {
-              screenX: 0,
-              height: 285,
-              width: widths,
-              screenY: height - heights
-            },
-            isLoadKeyBoard: true
-          })
-        }
-      )
-      clearTimeout(timer)
-    }, 50)
+    DeviceEventEmitter.emit("_keyboardDidShow", null);
+    // let timer = setTimeout(() => {
+    //   UIManager.measure(
+    //     findNodeHandle(this.refs.keyboardWrap),
+    //     (x, y, widths, heights) => {
+    //       DeviceEventEmitter.emit("_keyboardDidShow", {
+    //         endCoordinates: {
+    //           screenX: 0,
+    //           height: 285,
+    //           width: widths,
+    //           screenY: height - heights
+    //         },
+    //         isLoadKeyBoard: true
+    //       })
+    //     }
+    //   )
+    //   clearTimeout(timer)
+    // }, 50)
   }
 
   //隐藏键盘
@@ -582,10 +583,7 @@ class SecurityKeyboard extends Component {
                 >
                   <Image
                     style={styles.closeIcon}
-                    source={{
-                      uri:
-                        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAASCAYAAAA+PQxvAAAAAXNSR0IArs4c6QAAAppJREFUSA29lt9rUmEYx9+jZ2mh+YtMW41+0hhEdBFFV4XTfiyPP5awlED6s7wIQRBKULEu2nLOURQRFd1GQRfBIGgtXU2nx7fvMzxyFHUq6Xtz3vO+z4/P830edyb4JekJY0xrdzgexGKxv9hPbD2UJOMm54+ZIOxqkHWacx78sbGRi0aj+klR7EEw9pwzdptxbtJM6XSLgiB8xoFra3NzIjCRSOQwlFiGANcExj4JongPT8aWJOlYhfMiYM7hYMVss/ni8XhlHOoQxHa5vAwVrjYhXJlM5uceCCUMhULTtWp1HZRnxgWDHKbdapUgrqghKH8LhF6CweDxRr1eHAeM3+83M1legeqXMZwfNVqtm5SgvLRoWFsrnU5/14jidczMVzh4/tfMhMNhC2s08gSByj8c0Onm1RAE0KaIQtSmjCC8wED7UqnUjnI/zBPtsKIdebTjEgp8f8hgcCeTyV+dMbqCkJEaBlLmUYU0LEwgELDxen0VSlxEondMq/Vks9mtTgh6b2uN2kDdJlQzX6tUnqK6g2qbfnvYHuGyvEYQKOTtlF7v7gVBcXqC0KUCg0BfENA1KAyUsMO2gKG/ACXeGIxGD9T8TTF7rZ6tUTtQm+R6fQ3KnIXDKqrz9mrTfUk6iu9EAbZzmInXVsZuPcrlyup43fZ9FVEcSBmtKN5oKVOtPuvWJpw5djgn4DkAv8KQ3xwEgvIMpIgC1E8Z3DnlWq0A21ko8RIQd6DatuK733MoEArW+WuyWK3eUqlkabbuPAKuG83mhUQi8We/5Or7oUHI2efznRAaDfo2nUYA+ms5g+NZ7IuAuDssBMUcCYQcMQ8zzW/TSXonCLvTuTDq/zQjg1DykNd7qsZYDkP8zWgyLY2iBMWh9Q8m1EZzNShdSQAAAABJRU5ErkJggg=="
-                    }}
+                    source={require("../resource/images/icon-down.png")}
                   />
                 </TouchableOpacity>
               </View>
