@@ -1,6 +1,6 @@
 {
-  "name": "@elelyatar/react-native-virtual-input-keyboard",
-  "version": "1.0.0",
+  "name": "@elelyatar/react-native-supervons-custom-keyboard",
+  "version": "1.0.1",
   "description": "A JS input with keyboard with uppercase and lowercase letters, numbers and some symbols.\n",
   "main": "index.js",
   "keywords": [
@@ -15,7 +15,8 @@
   "license": "",
   "peerDependencies": {
     "react-native": "^0.41.2",
-    "react-native-windows": "0.41.0-rc.1"
+    "react-native-windows": "0.41.0-rc.1",
+    "create-react-class": "^15.7.0"
   },
   "prettier": {
     "singleQuote": false,
