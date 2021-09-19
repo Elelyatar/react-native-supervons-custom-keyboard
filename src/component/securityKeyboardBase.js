@@ -22,21 +22,21 @@ const { height } = Dimensions.get("window")
 class SecurityKeyboard extends Component {
   static propTypes = {
     key: PropTypes.string,
-    keyboardHeader: PropTypes.func, //配置键盘头部
-    value: PropTypes.any, //内容
-    placeholder: PropTypes.string, //提示文字
-    placeholderTextColor: PropTypes.string, //提示文字颜色
-    disabled: PropTypes.bool, //是否可以输入
-    caretHidden: PropTypes.bool, //是否隐藏光标
-    secureTextEntry: PropTypes.bool, //是否开启密码模式
-    style: PropTypes.any, //外壳样式
-    valueStyle: PropTypes.any, //内容样式
-    cursorStyle: PropTypes.any, // 闪动光标样式
-    secureTextStyle: PropTypes.any, // 密码框圆点光标样式
-    regs: PropTypes.func, //校验函数
-    onChangeText: PropTypes.func, //内容更改后的回调
-    onFocus: PropTypes.func, //得到焦点后的回调
-    onBlur: PropTypes.func //失去焦点后的回调
+    keyboardHeader: PropTypes.func,
+    value: PropTypes.any, //Initial value
+    placeholder: PropTypes.string,
+    placeholderTextColor: PropTypes.string,
+    disabled: PropTypes.bool,
+    caretHidden: PropTypes.bool,
+    secureTextEntry: PropTypes.bool,
+    style: PropTypes.any,
+    valueStyle: PropTypes.any,
+    cursorStyle: PropTypes.any,
+    secureTextStyle: PropTypes.any,
+    regs: PropTypes.func, // Verify function
+    onChangeText: PropTypes.func,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
   }
 
   constructor(props) {
@@ -161,7 +161,6 @@ class SecurityKeyboard extends Component {
     // }, 50)
   }
 
-  //隐藏键盘
   hide() {
     this.modalVisible = false
     this.setState({
@@ -172,31 +171,23 @@ class SecurityKeyboard extends Component {
     DeviceEventEmitter.emit("_keyboardDidHide", null)
   }
 
-  //发送事件 附带input内容
   inputEvent(value) {
-    DeviceEventEmitter.emit(this.props.keyName || "keyboardListener", value)
-    this.onChangeText(value)
-  }
-
-  //回调onChangeText
-  onChangeText(value) {
+    DeviceEventEmitter.emit(this.props.keyName || "keyboardListener", value);
     if (value == undefined || value == null) {
       return false
     }
     this.props.onChangeText && this.props.onChangeText(value.join(""))
   }
 
-  //得到焦点
   onFocus() {
     this.props.onFocus && this.props.onFocus()
   }
 
-  //失去焦点
   onBlur() {
     this.props.onBlur && this.props.onBlur()
   }
 
-  //校验文字
+  //Calibration
   regs(valueArr) {
     if (!this.props.regs) {
       return valueArr
@@ -206,7 +197,6 @@ class SecurityKeyboard extends Component {
     return valueArr
   }
 
-  //增加文字
   add(value) {
     let valueArr = this.state.valueArr
     valueArr.push(value)
@@ -220,7 +210,6 @@ class SecurityKeyboard extends Component {
     this.inputEvent(valueArr)
   }
 
-  //删除文字
   remove() {
     let valueArr = this.state.valueArr
     if (valueArr.length == 0) {
@@ -233,7 +222,6 @@ class SecurityKeyboard extends Component {
     this.inputEvent(valueArr)
   }
 
-  //长按删除
   removeAll() {
     let valueArr = this.state.valueArr
     if (valueArr.length == 0) {
@@ -246,7 +234,6 @@ class SecurityKeyboard extends Component {
     this.inputEvent(valueArr)
   }
 
-  // 乱序
   shuffle(a) {
     let len = a.length
     for (let i = 0; i < len - 1; i++) {
@@ -258,7 +245,6 @@ class SecurityKeyboard extends Component {
     return a
   }
 
-  //图片按钮
   addItemImageView(index, itemParent, sty, path, fun, funlong) {
     return (
       <TouchableHighlight
@@ -275,7 +261,6 @@ class SecurityKeyboard extends Component {
     )
   }
 
-  //文字的按钮
   addItemTextView(index, parentSty, sty, content, fun) {
     return (
       <TouchableHighlight
@@ -288,7 +273,6 @@ class SecurityKeyboard extends Component {
       </TouchableHighlight>
     )
   }
-  //改变数字的数据
   setChangeDateNum() {
     let arr = this.props.imageArr
 
@@ -302,7 +286,6 @@ class SecurityKeyboard extends Component {
     )
   }
 
-  //改变字母的数据
   setChangeDateString(stringArr, isUp) {
     let arr = this.props.imageArr
     if (isUp) {
@@ -330,7 +313,6 @@ class SecurityKeyboard extends Component {
     stringArr.push("#+=")
   }
 
-  //改变符号的数据
   setChangeDateSymbol() {
     let arr = this.props.imageArr
     this.symbolArr.push(
@@ -357,7 +339,6 @@ class SecurityKeyboard extends Component {
     }
   }
 
-  //添加横向视图
   addOrientationView(numArr, addNum, verticalView) {
     return numArr.map((item, index) => {
       if (index % addNum == 0) {
@@ -370,7 +351,6 @@ class SecurityKeyboard extends Component {
     })
   }
 
-  //渲染数字键盘
   _addNumView = (flag, addNum, numArr) => {
     return numArr.slice(flag, flag + addNum).map((item, index) => {
       let icon = styles.deleteIcon
@@ -408,9 +388,9 @@ class SecurityKeyboard extends Component {
     })
   }
 
-  //渲染字母键盘
+  //Render alphabet keyboard
   _addStringView = (flag, addNum, numArr) => {
-    // 改变列的数量
+    // Change the number of columns
     if (flag == 0) {
       addNum++
     }
@@ -424,7 +404,7 @@ class SecurityKeyboard extends Component {
         icon = styles.transformIcon
       }
       if (flag + index == 19 || flag + index == 27) {
-        // 设置转换按钮和 删除按钮的样式
+        // Set the style of the Convert button and Delete button
         return this.addItemImageView(
           index,
           styles.itemStringParentImage,
@@ -448,7 +428,7 @@ class SecurityKeyboard extends Component {
         )
       }
       if (flag + index == 29) {
-        // 设置空格
+        // Set space
         return this.addItemImageView(
           index,
           styles.itemStringParentSpace,
@@ -461,12 +441,12 @@ class SecurityKeyboard extends Component {
       let text = styles.numText
       if (flag + index == 10) {
         parent = styles.itemStringParentText2
-      } // 设置第二行开始左边间距
+      } // Set the left-hand spacing from the second line
       if (flag + index == 18) {
         parent = styles.itemStringParentText3
-      } // 设置第二行结束右边间距
+      } // Set the spacing to the right of the end of the second line
       if (flag + index == 28 || flag + index == 30) {
-        parent = styles.itemStringParentText4 //设置数字按钮，符号按钮的样式
+        parent = styles.itemStringParentText4 //Set the style of numeric buttons and symbol buttons
         text = styles.symbolText
       }
 
@@ -482,13 +462,13 @@ class SecurityKeyboard extends Component {
     })
   }
 
-  //渲染符号键盘
+  //Rendering symbol keyboard
   _addStringSymbol = (flag, addNum, numArr) => {
     return numArr.slice(flag, flag + addNum).map((item, index) => {
       let parent = styles.itemStringParentText4
       let icon = styles.deleteIcon
       if (flag + index == 28) {
-        //设置返回键、空格、删除键的样式
+        //Set the style of return key, space and delete key
         parent = styles.itemStringParentSpace
         icon = styles.spaceIcon
       }

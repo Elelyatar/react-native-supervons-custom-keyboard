@@ -44,8 +44,7 @@ declare class SecurityKeyboard {
     shouldComponentUpdate(nextProps: any, nextState: any): boolean;
     show(): void;
     hide(): void;
-    inputEvent(value: any): void;
-    onChangeText(value: any): boolean;
+    inputEvent(value: any): boolean;
     onFocus(): void;
     onBlur(): void;
     regs(valueArr: any): any;
