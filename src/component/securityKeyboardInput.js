@@ -86,18 +86,9 @@
     */
    return (
      <View style={[styles.view, props.style]}>
-       <TouchableHighlight style={styles.textInputWrap} onPress={show.bind(this)}>
-         <Text
-           numberOfLines={1}
-           ellipsizeMode={"clip"}
-           style={[
-             styles.value,
-             props.secureTextEntry ? props.secureTextStyle : props.valueStyle
-           ]}
-         >
-           {renderValue()}
-         </Text>
-         {valueArr.length == 0 ? (
+       <TouchableHighlight style={styles.textInputWrap} underlayColor={'#fff2'} onPress={show.bind(this)}>
+         
+         {valueArr.length == 0 ?
            <Text
              style={[
                styles.placeholder,
@@ -107,7 +98,17 @@
            >
              {props.placeholder || "Input"}
            </Text>
-         ) : null}
+          : <Text
+            numberOfLines={1}
+            ellipsizeMode={"clip"}
+            style={[
+              styles.value,
+              props.secureTextEntry ? props.secureTextStyle : props.valueStyle
+            ]}
+          >
+            {renderValue()}
+          </Text>
+        }
          {/* {!props.cursorLock && !props.caretHidden ? (
            <Animated.View style={[styles.cursorWrap, { opacity: fadeAnim }]}>
              <Text style={[styles.cursor, props.cursorStyle || {}]}>|</Text>

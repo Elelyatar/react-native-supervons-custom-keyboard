@@ -22,7 +22,7 @@ const { height } = Dimensions.get("window")
 class SecurityKeyboard extends Component {
   static propTypes = {
     key: PropTypes.string,
-    keyboardHeader: PropTypes.element, //配置键盘头部
+    keyboardHeader: PropTypes.func, //配置键盘头部
     value: PropTypes.any, //内容
     placeholder: PropTypes.string, //提示文字
     placeholderTextColor: PropTypes.string, //提示文字颜色
@@ -583,7 +583,7 @@ class SecurityKeyboard extends Component {
                 >
                   <Image
                     style={styles.closeIcon}
-                    source={require("../resource/images/icon-down.png")}
+                    source={require("../resource/images/ok.png")}
                   />
                 </TouchableOpacity>
               </View>

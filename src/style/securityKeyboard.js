@@ -39,13 +39,13 @@ const Styles = StyleSheet.create({
     justifyContent: "center"
   },
   headerWrap: {
-    height: 42,
+    height: 50,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center"
   },
   headerText: {
-    fontSize: 14,
+    fontSize: 16,
     color: "#5FBF9F"
   },
   headerImage: {
@@ -54,14 +54,14 @@ const Styles = StyleSheet.create({
   },
   closeIconWrap: {
     position: "absolute",
-    width: 50,
+    width: 70,
     height: 50,
     right: 0,
     alignItems: "center",
     justifyContent: "center"
   },
   closeIcon: {
-    width: px2dp(30),
+    width: px2dp(50),
     height: px2dp(30),
     resizeMode: "contain"
   },

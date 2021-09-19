@@ -12,7 +12,6 @@ const PropTypes = require("prop-types")
 /* $FlowFixMe(>=0.54.0 site=react_native_oss) This comment suppresses an error
  * found when Flow v0.54 was deployed. To see the error delete this comment and
  * run Flow. */
-const TimerMixin = require("react-timer-mixin")
 
 import type EmitterSubscription from "EmitterSubscription"
 import type { ViewLayout, ViewLayoutEvent } from "ViewPropTypes"
@@ -38,7 +37,6 @@ const viewRef = "VIEW"
  */
 const ParcelKeyboardView = createReactClass({
   displayName: "KeyboardAvoidingView",
-  mixins: [TimerMixin],
 
   propTypes: {
     ...ViewPropTypes,
