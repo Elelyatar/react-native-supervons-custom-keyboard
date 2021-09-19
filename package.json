@@ -1,6 +1,6 @@
 {
   "name": "@elelyatar/react-native-supervons-custom-keyboard",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "A JS input with keyboard with uppercase and lowercase letters, numbers and some symbols.\n",
   "main": "index.js",
   "keywords": [
@@ -13,6 +13,10 @@
   ],
   "author": "Rodrigo Urdiales",
   "license": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elelyatar/react-native-supervons-custom-keyboard.git"
+  },
   "peerDependencies": {
     "react-native": "^0.41.2",
     "react-native-windows": "0.41.0-rc.1",
